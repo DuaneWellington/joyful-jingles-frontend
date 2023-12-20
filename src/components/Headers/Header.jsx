@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import LoginButton from "./Auth/LoginButton";
+import LogoutButton from "../Auth/LogoutButton";
 import "./App/App.css"
 
 const Header = () => {
@@ -16,7 +16,7 @@ const Header = () => {
           {/* Add more nav links as needed */}
         </ul>
       </nav>
-      {/* <LoginButton /> */}
+      <LogoutButton />
     </header>
   );
 };

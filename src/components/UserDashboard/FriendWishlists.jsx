@@ -1,8 +1,8 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/FriendWishlists.jsx'
+// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/FriendWishlists.jsx'
 
 
-import React, { useEffect } from "react";
-import { getProductInfo } from "../utilities/api.jsx";
+import React, { useEffect, useState } from "react";
+import { getProductInfo } from "./api";
 
 const FriendWishlists = () => {
   const [friendWishlists, setFriendWishlists] = useState([]);

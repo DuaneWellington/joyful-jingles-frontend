@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard.jsx'
+// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/UserDashboard.jsx'
 
 import React, { useState } from "react";
 import { Routes, Route } from "react-router";

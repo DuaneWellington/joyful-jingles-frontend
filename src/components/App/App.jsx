@@ -3,10 +3,8 @@
 import React, { useState } from "react";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import Auth0ProviderWithNavigate from "../Auth/Auth0ProviderWithNavigate";
-import Header from "../Header.jsx";
-import LoginButton from "../Auth/LoginButton";
-import UserDashboard from "../UserDashboard";
+import LoginButton from "../Auth/LoginButton.jsx";
+import UserDashboard from "../UserDashboard/UserDashboard.jsx";
 import "./App.css";
 
 const App = () => {
@@ -17,7 +15,6 @@ const App = () => {
       <Route
         path="/"
         element={
-          <Auth0ProviderWithNavigate>
             <div>
               <Header />
               <h1 className="welcome">Welcome to Joyful Jingles!!</h1>
@@ -26,7 +23,7 @@ const App = () => {
               </p>
               {isAuthenticated ? (
               <Link to="/dashboard">
-                <button style={{ backgroundColor: "red", color: "white" }}>
+                <button >
                   Get Started
                 </button>
               </Link>
@@ -34,7 +31,6 @@ const App = () => {
                 <LoginButton />
               )}
             </div>
-          </Auth0ProviderWithNavigate>
         }
       />
       {/* Define a route for the dashboard */}

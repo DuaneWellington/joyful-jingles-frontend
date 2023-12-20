@@ -3,7 +3,7 @@
 import React from "react";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from "react-router";
-import config from "../../config";
+import config from "../../config/index.jsx";
 
 const Auth0ProviderWithNavigate = ({ children }) => {
     const navigate = useNavigate();
@@ -18,7 +18,6 @@ const Auth0ProviderWithNavigate = ({ children }) => {
 
     const onRedirectCallback = (appState) => {
         navigate(appState?.returnTo || window.location.pathname);
-        // navigate(appState?.returnTo || '/');
     };
 
     return (
@@ -34,4 +33,4 @@ const Auth0ProviderWithNavigate = ({ children }) => {
     );
 };
 
-export default Auth0ProviderWithNavigate
+export default Auth0ProviderWithNavigate;

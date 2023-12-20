@@ -1,3 +1,4 @@
+// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/WishlistForm.jsx'
 
 
 import React, { useState } from "react";
@@ -14,7 +15,12 @@ const WishlistForm = ({ onCreateWishlist }) => {
     return (
         <div>
             <h3>Create Wishlist</h3>
-            {/* wishlist form fields */}
+            <input
+            type="text"
+            placeholder="Enter Wishlist Name"
+            value={wishlistName}
+            onChange={(e) => setWishlistName(e.target.value)}
+            />
             <button onClick={handleCreateWishlist}>Create Wishlist</button>
         </div>
     );

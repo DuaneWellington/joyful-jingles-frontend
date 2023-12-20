@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/userProfile.jsx'
+// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/userProfile.jsx'
 
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
