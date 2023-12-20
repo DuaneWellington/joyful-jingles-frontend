@@ -10,7 +10,7 @@ const Auth0ProviderWithNavigate = ({ children }) => {
 
     const domain = config.AUTH0_DOMAIN;
     const clientId = config.AUTH0_CLIENT_ID;
-    const redirectUri = "http://localhost:5173";
+    const redirectUri = "http://localhost:5173/";
 
     if(!(domain && clientId && redirectUri)) {
         return null;

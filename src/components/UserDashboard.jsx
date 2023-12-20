@@ -20,7 +20,17 @@ const UserDashboard = () => {
         setWishlists(updatedWishlists);
     };
 
-    // other functions for marking items as purchased, sharing wishlist, fecthing friend wishlists, etc
+    const deleteItemFromWishlist = (wishlistIndex, itemIndex) => {
+        const updatedWishlists = [...wishlists];
+        updatedWishlists[wishlistIndex].items.splice(itemIndex, 1);
+        setWishlists(updatedWishlists);
+    };
+
+    const deleteFriend = (friendIndex) => {
+        const updatedFriends = [...friends];
+        updatedFriends.splice(friendIndex, 1);
+        setFriends(updatedFriends);
+    };
 
     return (
         <div>

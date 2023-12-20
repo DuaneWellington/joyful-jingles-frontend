@@ -1,5 +1,9 @@
 /* PATH: 'JOYFUL-JINGLES/express-react/frontend/src/App.css' */
 
+.welcome {
+  color: green;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;

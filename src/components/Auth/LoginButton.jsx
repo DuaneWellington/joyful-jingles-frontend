@@ -20,7 +20,7 @@ const LoginButton = () => {
         <button 
             onClick={handleLogin}
             style={{
-                backgroundColor: "blue",
+                backgroundColor: "red",
                 color: "white",
                 padding: "10px",
                 fontSize: "16px",

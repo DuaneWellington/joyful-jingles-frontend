@@ -20,13 +20,13 @@ const App = () => {
           <Auth0ProviderWithNavigate>
             <div>
               <Header />
-              <h1>Welcome to Joyful Jingles!!</h1>
+              <h1 className="welcome">Welcome to Joyful Jingles!!</h1>
               <p>
                 Click the button below to get started and access your dashboard.
               </p>
               {isAuthenticated ? (
               <Link to="/dashboard">
-                <button style={{ backgroundColor: "blue", color: "white" }}>
+                <button style={{ backgroundColor: "red", color: "white" }}>
                   Get Started
                 </button>
               </Link>
