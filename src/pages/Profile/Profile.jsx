@@ -1,6 +1,5 @@
 // PATH: 'JOYFUL-JINGLES/express-react/frontend/src/pages/Profile/Profile.jsx'
 
-
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router";
@@ -16,7 +15,7 @@ const Profile = () => {
   // if a user is not logged in, use react-routers navigate component to redirect Profile page to home route
 
   if (!isAuthenticated) {
-    return <Navigate to="/" />;
+    return <Navigate to="/dashboard" />;
   }
 
   // if the authentication status is true, but the authentication confirmation is loading, render a message

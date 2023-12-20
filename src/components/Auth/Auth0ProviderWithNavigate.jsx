@@ -1,4 +1,5 @@
 // PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/Auth/Auth0ProviderWithNavigate.jsx'
+
 import React from "react";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from "react-router";
@@ -9,7 +10,7 @@ const Auth0ProviderWithNavigate = ({ children }) => {
 
     const domain = config.AUTH0_DOMAIN;
     const clientId = config.AUTH0_CLIENT_ID;
-    const redirectUri = config.AUTH0_CALLBACK;
+    const redirectUri = "http://localhost:5173";
 
     if(!(domain && clientId && redirectUri)) {
         return null;

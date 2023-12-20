@@ -1,6 +1,7 @@
 // PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard.jsx'
 
 import React, { useState } from "react";
+import { Routes, Route } from "react-router";
 import WishlistForm from "./WishlistForm";
 import WishlistItemForm from "./WishlistItemForm";
 import WishlistShare from "./WishlistShare";
