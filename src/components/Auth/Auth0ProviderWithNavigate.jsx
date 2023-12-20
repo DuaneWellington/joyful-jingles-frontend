@@ -16,7 +16,8 @@ const Auth0ProviderWithNavigate = ({ children }) => {
     }
 
     const onRedirectCallback = (appState) => {
-        navigate(appState?.returnTo || '/');
+        navigate(appState?.returnTo || window.location.pathname);
+        // navigate(appState?.returnTo || '/');
     };
 
     return (
@@ -24,6 +25,7 @@ const Auth0ProviderWithNavigate = ({ children }) => {
         domain={domain}
         clientId={clientId}
         redirect_uri={redirectUri}
+        authorizationParams={{ redirect_uri: redirectUri }}
         onRedirectCallback={onRedirectCallback}
         >
             {children}
