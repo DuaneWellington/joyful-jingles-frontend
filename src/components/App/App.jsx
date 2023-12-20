@@ -16,24 +16,6 @@ const App = () => {
       </div>
     </Auth0ProviderWithNavigate>
   );
-
-  // const handleGetStarted = async () => {
-  //   await loginWithRedirect();
-  // };
-
-  // return (
-  //   <div>
-  //     <h1>Welcome to Joyful Jingles!!</h1>
-  //     <p>Click the button below to get started and access your dashboard.</p>
-  //     <button
-  //       style={{ backgroundColor: "blue", color: "white" }}
-  //       onClick={handleGetStarted}
-  //     >
-  //       Get Started
-  //     </button>
-  //   </div>
-  // );
-
 };
 
 export default App;

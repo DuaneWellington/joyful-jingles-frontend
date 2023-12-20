@@ -4,7 +4,7 @@ import React from "react"
 // import { useGoogleLogin } from "react-oauth";
 
 const GoogleOAuth = () => {
-    const { singIn, googleUser } = useGoogleLogin({
+    const { signIn, googleUser } = useGoogleLogin({
         clientId: process.env.CLIENT_ID,
         onSuccess: (user) => {
             console.log("Google user:", user);
