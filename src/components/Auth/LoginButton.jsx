@@ -18,12 +18,3 @@ const LoginButton = () => {
 };
 
 export default LoginButton;
-
-export const loginWithRedirect = async () => {
-    const { loginWithRedirect } = useAuth0();
-    await loginWithRedirect({
-        appState: {
-            returnTo: '/',
-        }
-    })
-}

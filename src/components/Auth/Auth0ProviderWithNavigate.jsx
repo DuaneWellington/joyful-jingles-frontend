@@ -1,11 +1,10 @@
 // PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/Auth/Auth0ProviderWithNavigate.jsx'
-
+import React from "react";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from "react-router";
-
 import config from "../../config";
 
-export default function Auth0ProviderWithNavigate({ children }) {
+const Auth0ProviderWithNavigate = ({ children }) => {
     const navigate = useNavigate();
 
     const domain = config.AUTH0_DOMAIN;
@@ -17,17 +16,21 @@ export default function Auth0ProviderWithNavigate({ children }) {
     }
 
     const onRedirectCallback = (appState) => {
-        navigate(appState?.returnTo || window.location.pathname);
+        navigate(appState?.returnTo || '/');
+        // navigate(appState?.returnTo || window.location.pathname);
     };
 
     return (
         <Auth0Provider
         domain={domain}
         clientId={clientId}
-        authorizationParams={{ redirect_uri: redirectUri }}
+        redirect_uri={redirectUri}
+        // authorizationParams={{ redirect_uri: redirectUri }}
         onRedirectCallback={onRedirectCallback}
         >
             {children}
         </Auth0Provider>
     );
-}
+};
+
+export default Auth0ProviderWithNavigate
