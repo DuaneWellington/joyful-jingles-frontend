@@ -7,6 +7,7 @@ import FriendWishlists from "./FriendWishlists";
 import WishlistForm from "./WishlistForm";
 import WishlistItemForm from "./WishlistItemForm";
 import WishlistShare from "./WishlistShare";
+import UserProfileHeader from "../Headers/UserProfileHeader";
 
 const UserProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -18,6 +19,9 @@ const UserProfile = () => {
   return (
     isAuthenticated && (
       <div>
+        <header>
+          <UserProfileHeader />
+        </header>
         <img src={user.picture} alt={user.name} />
         <h2>{user.name}</h2>
         <p>{user.email}</p>
