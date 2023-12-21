@@ -2,7 +2,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import { getProductInfo } from "./api";
+import { getProductInfo } from "../../utilities/api.jsx";
 
 const FriendWishlists = () => {
   const [friendWishlists, setFriendWishlists] = useState([]);

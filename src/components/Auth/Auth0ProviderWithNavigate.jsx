@@ -1,7 +1,7 @@
 // PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/Auth/Auth0ProviderWithNavigate.jsx'
 
 import React from "react";
-import { Auth0Provider } from "@auth0/auth0-react";
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router";
 import config from "../../config/index.jsx";
 
@@ -32,5 +32,7 @@ const Auth0ProviderWithNavigate = ({ children }) => {
         </Auth0Provider>
     );
 };
+
+export const useAuth = () => useAuth0();
 
 export default Auth0ProviderWithNavigate;

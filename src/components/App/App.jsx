@@ -5,12 +5,19 @@ import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Auth/LoginButton.jsx";
 import UserDashboard from "../UserDashboard/UserDashboard.jsx";
+import UserProfile from "../UserDashboard/UserProfile.jsx";
+import ApiTest from "../ApiTest.jsx";
+import UserWishlist from "../UserWishlist/UserWishlist.jsx";
+import Header from "../Headers/Header.jsx";
+import { WishlistProvider } from "../WishlistContext/WishlistContext.jsx";
+import "../../index.css"
 import "./App.css";
 
 const App = () => {
   const { isAuthenticated } = useAuth0();
 
   return (
+    <WishlistProvider>
     <Routes>
       <Route
         path="/"
@@ -34,9 +41,14 @@ const App = () => {
         }
       />
       {/* Define a route for the dashboard */}
-      <Route path="/dashboard" element={isAuthenticated ? <UserDashboard /> : <Navigate to="/" />} 
+      <Route path="/dashboard" element={isAuthenticated ? <UserDashboard /> 
+    : <Navigate to="/" />} />
+      <Route path="/profile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/" />} />
+      <Route path="/apitest" element={isAuthenticated ? <ApiTest /> : <Navigate to="/" />} />
+      <Route path="/wishlist" element={isAuthenticated ? <UserWishlist /> : <Navigate to="/" />} 
       />
     </Routes>
+    </WishlistProvider>
   );
 };
 

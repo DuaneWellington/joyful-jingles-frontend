@@ -1,9 +1,14 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/userProfile.jsx'
+// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/UserProfile.jsx'
 
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import Header from "../Headers/Header";
+import FriendWishlists from "./FriendWishlists";
+import WishlistForm from "./WishlistForm";
+import WishlistItemForm from "./WishlistItemForm";
+import WishlistShare from "./WishlistShare";
 
-const Profile = () => {
+const UserProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
@@ -21,4 +26,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UserProfile;
