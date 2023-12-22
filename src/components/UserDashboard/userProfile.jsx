@@ -1,6 +1,5 @@
 // PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/UserProfile.jsx'
 
-import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserProfileHeader from "../Headers/UserProfileHeader";
 
