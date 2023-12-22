@@ -1,7 +1,6 @@
 // PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/UserDashboard.jsx'
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useAuth } from "../Auth/Auth0ProviderWithNavigate"; // Assuming you have an authentication context or provider
 import "../Styles/UserDashboard.css"; // Import a CSS file for styling
 import UserDashboardHeader from "../Headers/UserDashboardHeader";
