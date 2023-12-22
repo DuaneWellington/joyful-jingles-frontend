@@ -3,7 +3,7 @@
 import React from "react";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router";
-import config from "../../config/index.jsx";
+import config from "../../config/index";
 
 const Auth0ProviderWithNavigate = ({ children }) => {
     const navigate = useNavigate();

@@ -1,12 +1,14 @@
  /* PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/styles/UserDashboard.css' */
 
-
-
  .product-container {
     display: flex;
     flex-wrap: wrap;
   }
   
+  .pageTitle {
+
+  }
+
   .product-card {
     width: 200px; /* Set the width */
     height: 340px; /* Set the height */
