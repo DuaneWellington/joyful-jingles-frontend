@@ -2,11 +2,6 @@
 
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Header from "../Headers/Header";
-import FriendWishlists from "./FriendWishlists";
-import WishlistForm from "./WishlistForm";
-import WishlistItemForm from "./WishlistItemForm";
-import WishlistShare from "./WishlistShare";
 import UserProfileHeader from "../Headers/UserProfileHeader";
 
 const UserProfile = () => {
