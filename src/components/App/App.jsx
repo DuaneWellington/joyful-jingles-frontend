@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "../Auth/LoginButton";
-import UserDashboard from "../UserDashboard/UserDashboard";
 import UserProfile from "../UserDashboard/UserProfile.jsx";
 import ApiTest from "../ApiTest";
 import UserWishlist from "../UserWishlist/UserWishlist";
@@ -12,6 +11,8 @@ import Header from "../Headers/Header";
 import { WishlistProvider } from "../WishlistContext/WishlistContext";
 import "../../index.css"
 import "./App.css";
+import UserDashboard from "../UserDashboard/UserDashboard";
+
 
 const App = () => {
   const { isAuthenticated } = useAuth0();
