@@ -9,21 +9,18 @@ import "../App/App.css"
 
 const UserDashboardHeader = () => {
   return (
-    <header>
+    <header className="header-container">
       <nav className="headerNav">
-        <ul>
-          <li>
+        <ul className="navList">
+          <li className="navItem">
             <Link to="/wishlist">Wishlist</Link>
             </li>
-            <li>
+            <li className="navItem">
             <Link to="/profile">Profile</Link>
           </li>
-          <li>
+          <li className="navItem">
           <LogoutButton />
           </li>
-
-          
-
           {/* Add more nav links as needed */}
         </ul>
       </nav>

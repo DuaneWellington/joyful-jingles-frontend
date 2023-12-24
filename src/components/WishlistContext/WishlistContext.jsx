@@ -1,4 +1,4 @@
-// WishlistContext.js
+// PATH: 'src/components/WishlistContext/WishlistContext.jsx'
 
 import { createContext, useContext, useState } from 'react';
 

@@ -1,0 +1,16 @@
+/* PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/Styles/LogoutButton.css' */
+
+.logout-button {
+    background-color: #c62828; /* Christmas red color */
+    color: #ffffff; /* White text color for contrast */
+    padding: 8px 16px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .logout-button:hover {
+    background-color: #87231c; /* Darker red on hover */
+  }
+  

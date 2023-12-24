@@ -1,48 +1,59 @@
 /* PATH: 'JOYFUL-JINGLES/express-react/frontend/src/App.css' */
 
-.welcome {
-  color: green;
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.app-container {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+nav li {
+  display: inline;
+  margin-right: 1rem;
 }
 
-.card {
-  padding: 2em;
+h1.app-name {
+  font-size: 2rem;
+  margin: 2rem 0;
 }
 
-.read-the-docs {
-  color: #888;
+.hero-section {
+  background-image: url('path/to/your/hero-image.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 5rem;
+}
+
+.hero-section p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.get-started-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+}
+
+.footer-text {
+  margin: 2rem 0;
+  color: #333;
 }

@@ -1,11 +1,13 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/UserDashboard.jsx'
+// PATH: 'src/components/UserDashboard/UserDashboard.jsx'
 
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../Auth/Auth0ProviderWithNavigate"; // Assuming you have an authentication context or provider
-import "../Styles/UserDashboard.css"; // Import a CSS file for styling
+import { useAuth } from "../Auth/Auth0ProviderWithNavigate"; 
+import { Link } from "react-router-dom";
+import "../Styles/UserDashboard.css"; 
 import UserDashboardHeader from "../Headers/UserDashboardHeader";
 
 const UserDashboard = () => {
+  const { user } = useAuth();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -19,15 +21,42 @@ const UserDashboard = () => {
       }
     };
 
+    if (data.length === 0) {
     fetchData();
-  }, []);
+  }
+ }, [data]);
 
   const getRandomProducts = (count) => {
-    const shuffledData = data.products ? [...data.products].sort(() => 0.5 - Math.random()) : [];
-    return shuffledData.slice(0, count);
+    const dataProducts = data.products || [];
+    const numProducts = dataProducts.length;
+    
+    if (numProducts === 0) {
+      return [];
+    }
+    
+    const randomIndices = [];
+    while (randomIndices.length < count) {
+      const randomIndex = Math.floor(Math.random() * numProducts);
+      if (!randomIndices.includes(randomIndex)) {
+        randomIndices.push(randomIndex);
+      }
+    }
+
+    const selectedProducts = randomIndices.map((index) => dataProducts[index]);
+    return selectedProducts;
   };
 
-  const selectedProducts = getRandomProducts(5);
+  const selectedProducts = getRandomProducts(3);
+
+  const getFirstName = () => {
+    if (user && user.given_name) {
+      return user.given_name;
+    } else if (user && user.name) {
+      const names = user.name.split(" ");
+      return names[0];
+    }
+    return "Guest";
+  };
 
   return (
     <div>
@@ -35,10 +64,14 @@ const UserDashboard = () => {
             <UserDashboardHeader />
         </header>
       <h1 className="pageTitle">My Dashboard</h1>
+      <p>Welcome, {" "}
+      <Link to="/profile" className="profile-link">
+        {getFirstName()}
+        </Link>
+        </p>
       <div className="product-container">
-        <p>
-      <h2>Hot and Trending</h2>
-      </p>
+        <p>Hot and Trending</p>
+        <p> </p>
         {selectedProducts.map((item) => (
           <div key={item.id} className="product-card">
             {item.images && item.images.length >= 2 && (
@@ -62,97 +95,3 @@ const UserDashboard = () => {
 export default UserDashboard;
 
 
-
-
-
-
-
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import { getProductInfo } from "../../utilities/api.jsx";
-// import { useAuth } from "../Auth/Auth0ProviderWithNavigate.jsx"; // Assuming you have an authentication context or provider
-
-// const UserDashboard = () => {
-//   const [productInfo, setProductInfo] = useState(null);
-//   const { isAuthenticated, user } = useAuth(); // Assuming you have an authentication context or provider
-
-//   //   useEffect(() => {
-//   // Use a placeholder product ID for testing
-//   // const productId = '127WMICR2JLK';
-
-//   // Fetch product information when the component mounts
-//   const fetchProductInfo = async () => {
-//     try {
-//       const response = await axios.get(
-//         "http://localhost:5174/walmart-product/127WMICR2JLK"
-//       );
-//       setProductInfo(response.data);
-
-//       // const result = await getProductInfo(productId);
-
-//       // Set the product information in state
-//       // setProductInfo(result);
-//     } catch (error) {
-//       console.error("Error fetching product information", error);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchAmazonProduct();
-//   }, []);
-
-//   // export const fetchAmazonProduct = async () => {
-//   //     try {
-//   //       const response = await axios.get(
-//   //         'http://api-prd.axesso.de/amz/amazon-lookup-product',
-//   //         {
-//   //           headers: {
-//   //             'axesso-api-key': "52d03659f5mshde22d1aee3d427cp1154eajsn60129072a38e",
-//   //             'Content-Type': 'application/json',
-//   //           },
-//   //           params: {
-//   //             url: 'https://www.amazon.com/dp/B01MQNPOUF', // Replace with the actual product URL
-//   //           },
-//   //         }
-//   //       );
-
-//   //       // Handle the response and update state or perform other actions
-//   //       console.log(response.data); // Log the response for now
-//   //     } catch (error) {
-//   //       // Handle errors, e.g., show an error message to the user
-//   //       console.error('Error fetching Amazon product:', error);
-//   //     }
-//   //   };
-
-//   // Call the function to fetch the Amazon product when your component mounts or based on user interactions
-
-//   useEffect(() => {
-//     fetchProductInfo();
-//   }, []); // Only run this effect once when the component mounts
-
-//   return (
-//     <div>
-//       <h2 className="userdash">User Dashboard</h2>
-//       {isAuthenticated ? (
-//         <div>
-//           {productInfo ? (
-//             <div className="productCard">
-//               <img
-//                 src={productInfo.productImage}
-//                 alt={productInfo.productTitle}
-//               />
-//               <p>{productInfo.productTitle}</p>
-//               <p>${productInfo.price}</p>
-//             </div>
-//           ) : (
-//             <p>Loading product information...</p>
-//           )}
-//         </div>
-//       ) : (
-//         <p>Please log in to view your dashboard.</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default UserDashboard;

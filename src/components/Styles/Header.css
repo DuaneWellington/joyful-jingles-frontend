@@ -1,0 +1,19 @@
+/* PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/Styles/Header.css' */
+
+.header-container {
+    background-color: #066c06; /* Your desired background color for the header */
+    padding: 10px; /* Adjust the padding as needed */
+  }
+  
+  .navList {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* Spread out the nav items evenly */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navItem {
+    margin: 0;
+  }

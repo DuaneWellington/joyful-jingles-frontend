@@ -62,9 +62,11 @@ const UserWishlist = () => {
                   }
                 >
                   {/* You can dynamically generate quantity options based on available quantities */}
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
+                  {Array.from({ length: 20 }, (_, index) => (
+                    <option key={index + 1} value={index + 1}>
+                      {index + 1}
+                    </option>
+                  ))}
                   {/* ... */}
                 </select>
               </td>

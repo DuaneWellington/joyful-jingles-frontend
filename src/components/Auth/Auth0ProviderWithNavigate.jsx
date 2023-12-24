@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/Auth/Auth0ProviderWithNavigate.jsx'
+// PATH: 'src/components/Auth/Auth0ProviderWithNavigate.jsx'
 
 import React from "react";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
@@ -11,7 +11,6 @@ const Auth0ProviderWithNavigate = ({ children }) => {
     const domain = config.AUTH0_DOMAIN;
     const clientId = config.AUTH0_CLIENT_ID;
     const redirectUri = config.AUTH0_CALLBACK;
-    ;
 
     if(!(domain && clientId && redirectUri)) {
         return null;

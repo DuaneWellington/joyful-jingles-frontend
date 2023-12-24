@@ -1,55 +1,40 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/App/App.jsx'
+// PATH: 'src/components/App/App.jsx'
 
-import React, { useState } from "react";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import LoginButton from "../Auth/LoginButton";
-import UserProfile from "../UserDashboard/UserProfile.jsx";
-import ApiTest from "../ApiTest";
-import UserWishlist from "../UserWishlist/UserWishlist";
-import Header from "../Headers/Header";
-import { WishlistProvider } from "../WishlistContext/WishlistContext";
-import "../../index.css"
-import "./App.css";
 import UserDashboard from "../UserDashboard/UserDashboard";
-
+import "./App.css";
 
 const App = () => {
-  const { isAuthenticated } = useAuth0();
 
   return (
-    <WishlistProvider>
-    <Routes>
-      <Route
-        path="/"
-        element={
+    <div className="app-container">
+      <Routes>
+        <Route
+          path="/"
+          element={
             <div>
-              <Header />
-              <h1 className="welcome">Welcome to Joyful Jingles!!</h1>
-              <p>
-                Click the button below to get started and access your dashboard.
-              </p>
-              {isAuthenticated ? (
-              <Link to="/dashboard">
-                <button >
-                  Get Started
-                </button>
-              </Link>
-              ) : (
-                <LoginButton />
-              )}
+              <h1 className="app-name">Wishology</h1>
+              <div className="hero-section">
+                <p>
+                  Explore a world of endless possibilities and get what you
+                  wished for!
+                </p>
+                  <LoginButton />
+              </div>
+              <footer>
+                <p className="footer-text">Wishology</p>
+              </footer>
             </div>
-        }
-      />
-      {/* Define a route for the dashboard */}
-      <Route path="/dashboard" element={isAuthenticated ? <UserDashboard /> 
-    : <Navigate to="/" />} />
-      <Route path="/profile" element={isAuthenticated ? <UserProfile /> : <Navigate to="/" />} />
-      <Route path="/apitest" element={isAuthenticated ? <ApiTest /> : <Navigate to="/" />} />
-      <Route path="/wishlist" element={isAuthenticated ? <UserWishlist /> : <Navigate to="/" />} 
-      />
-    </Routes>
-    </WishlistProvider>
+          }
+        />
+        <Route
+        path="/dashboard"
+        element={<UserDashboard />}
+        />
+      </Routes>
+    </div>
   );
 };
 
