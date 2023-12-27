@@ -4,7 +4,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import UserProfile from "../UserDashboard/UserProfile";
 import LogoutButton from "../Auth/LogoutButton";
-import ApiTest from "../ApiTest";
 import "../App/App.css"
 
 const UserDashboardHeader = () => {
