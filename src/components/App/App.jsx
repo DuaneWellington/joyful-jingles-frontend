@@ -9,6 +9,7 @@ import UserProfile from "../UserDashboard/UserProfile";
 import UserWishlist from "../UserWishlist/UserWishlist"
 import WishlistForm from "../UserDashboard/WishlistForm";
 import AllProductsPage from "../AllProductsPage/AllProductsPage";
+import ProductPage from "../ProductPage/ProductPage";
 import "./App.css";
 
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/wishlist" element={<UserWishlist />} />
         <Route path="/create-wishlist" element={<WishlistForm />} />
         <Route path="/all-products" element={<AllProductsPage />} />
+        <Route path="/product/:productId" element={<ProductPage />} />
       </Routes>
     </div>
   );

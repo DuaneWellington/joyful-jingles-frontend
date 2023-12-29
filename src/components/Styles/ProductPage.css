@@ -1,4 +1,4 @@
-/* PATH: 'src/components/Styles/AllProductsPage.css' */
+/* PATH: 'src/components/Styles/ProductPage.css' */
 
 .user-wishlist-container {
     max-width: 800px;
@@ -22,9 +22,11 @@ h1 {
 }
 
 .product-card {
+    height: 70%;
+    width: 70%;
     background-color: #074a07;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0 2px 4px black;
 }
 
@@ -34,7 +36,7 @@ h1 {
 }
 
 .product-card p {
-    color: #555;
+    color: black;
 }
 
 .view-all-products-button {
