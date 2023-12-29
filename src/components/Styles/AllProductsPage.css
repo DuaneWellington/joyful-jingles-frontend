@@ -1,0 +1,52 @@
+/* PATH: 'src/components/Styles/AllProductsPage.css' */
+
+.user-wishlist-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.wishlist-form-container {
+    margin-bottom: 20px;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #074a07;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px black;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    color: #555;
+}
+
+.view-all-products-button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.view-all-products-button:hover {
+    background-color: #45a049;
+}

@@ -3,6 +3,10 @@
 import React from "react";
 
 const ClickableProduct = ({ item }) => {
+    const handleClick = () => {
+        addToCart(item);
+    };
+
     const handleAddToCart = () => {
         const existingCartItems = JSON.parse(localStorage.getItem('cart')) || [];
         const updatedCartItems = [...existingCartItems, item];
@@ -12,7 +16,7 @@ const ClickableProduct = ({ item }) => {
     }
 
     return (
-        <div className="product-card" onClick={handleAddToCart}>
+        <div className="product-card" onClick={handleClick}>
             {item.images && item.images.length >= 2 && (
                 <img src={item.images[1]}
                 alt={item.title}

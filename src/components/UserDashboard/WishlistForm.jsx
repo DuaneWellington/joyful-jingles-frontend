@@ -1,5 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/WishlistForm.jsx'
-
+// PATH: 'src/components/UserDashboard/WishlistForm.jsx'
 
 import React, { useState } from "react";
 
@@ -8,8 +7,10 @@ const WishlistForm = ({ onCreateWishlist }) => {
     const [description, setDescription] = useState('');
 
     const handleCreateWishlist = () => {
-        const newWishlist = { wishlistName, description, items: [] };
+        const newWishlist = { id: Date.now(), name: wishlistName, description, items: [] };
         onCreateWishlist(newWishlist);
+        setWishlistName('');
+        setDescription('');
     };
 
     return (

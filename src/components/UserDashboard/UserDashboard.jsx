@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import "../Styles/UserDashboard.css";
 import UserDashboardHeader from "../Headers/UserDashboardHeader";
 import ClickableProduct from "./ClickableProduct";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const magnifyingGlassIconUrl = "https://i.imgur.com/2Prbjp1.png";
 
@@ -55,6 +57,10 @@ const UserDashboard = () => {
   const selectedProducts = getRandomProducts(3);
 
   const addToCart = () => {
+    const currentCart = localStorage.getItem("cart");
+    const cartItems = currentCart ? JSON.parse(currentCart) : [];
+    cartItems.push(item);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
     setCartCount((prevCount) => prevCount +1);
   };
 
@@ -97,7 +103,7 @@ const UserDashboard = () => {
           onClick={toggleSearchBar}
         />
         <div className="searchAndCart">
-        {searchVisible ? <SearchBar onSearch={handleSearch}/> : null}
+        {searchVisible ? (<SearchBar onSearch={handleSearch}/>) : null}
 
         <ShoppingCartIcon cartCount={cartCount} />
         </div>
@@ -110,8 +116,8 @@ const UserDashboard = () => {
           </Link>
         </p>
         <div className="product-container">
-          <p>{searchResults.length > 0 ? 'Search Results' : 'Hot and Trending'}</p>
-          <p> </p>
+          <p>{searchResults.length > 0 ? 'Search Results' : 'Hot and Trending'}
+          </p>
           {searchResults.length > 0
           ? searchResults.map((item) => (
             <ClickableProduct key={item.id} item={item} addToCart={addToCart} />
@@ -160,10 +166,10 @@ const SearchBar = ({ onSearch }) => {
 };
 
 const ShoppingCartIcon = ({ cartCount }) => (
-  <div className="shopping-cart-icon">
-    <img src="/cart.svg" alt="Shopping Cart" />
+  <Link to="/cart" className="shopping-cart-icon">
+    <FontAwesomeIcon icon={faShoppingCart} />
     {cartCount > 0 && <div className="cart-count"> {cartCount}</div>}
-  </div>
+  </Link>
 );
 
 export default UserDashboard;

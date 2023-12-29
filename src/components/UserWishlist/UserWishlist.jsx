@@ -1,43 +1,81 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserWishlist/UserWishlist.jsx'
+// PATH: 'src/components/UserWishlist/UserWishlist.jsx'
 
 import React, { useState, useEffect } from "react";
-import { useWishlist } from "../WishlistContext/WishlistContext";
+import { Link } from "react-router-dom";
+import WishlistForm from "../UserDashboard/WishlistForm";
 import UserWishlistHeader from "../Headers/UserWishlistHeader";
+import "../Styles/UserWishlist.css"
 
 const UserWishlist = () => {
   const [wishlists, setWishlists] = useState([]);
-  const { wishlistData, addProductToWishlist, removeProductFromWishlist } = useWishlist();
 
   useEffect(() => {
-    // Retrieve wishlists from localStorage when the component mounts
+    // pulls wishlists from localStorage when the component mounts
     const storedWishlists = JSON.parse(localStorage.getItem("wishlists")) || [];
     setWishlists(storedWishlists);
   }, []);
 
   const handleDeleteItem = (wishlistId, itemId) => {
-    // Implement logic to delete the item from the wishlist
+    // deletes the item from the wishlist
     console.log(`Delete item ${itemId} from wishlist ${wishlistId}`);
   };
 
   const handleChangeQuantity = (wishlistId, itemId, newQuantity) => {
-    // Implement logic to change the quantity of the item in the wishlist
+    // changes the quantity of the item in the wishlist
     console.log(
       `Change quantity of item ${itemId} in wishlist ${wishlistId} to ${newQuantity}`
     );
   };
 
   const handleMostWantedClick = (wishlistId, itemId) => {
-    // Implement logic to add the item to the Most Wanted column
+    // adds the item to the 'Most Wanted' column
     console.log(`Add item ${itemId} to Most Wanted in wishlist ${wishlistId}`);
   };
 
+  const handleCreateWishlist = (newWishlist) => {
+    setWishlists((prevWishlists) => {
+      const updatedWishlists = [...prevWishlists, newWishlist]
+      localStorage.setItem("wishlists", JSON.stringify(updatedWishlists));
+      return updatedWishlists;
+    });
+  };
+
+  const handleDeleteWishlist = (wishlistId) => {
+    setWishlists((prevWishlists) => {
+      const updatedWishlists = prevWishlists.filter((wishlist) => wishlist.id !== wishlistId);
+      localStorage.setItem("wishlists", JSON.stringify(updatedWishlists));
+      return updatedWishlists;
+    })
+  }
+
   return (
-    <div>
+    <div className="user-wishlist-container">
       <header>
         <UserWishlistHeader />
       </header>
 
       <h1>User Wishlist</h1>
+
+      <div className="wishlist-form-container">
+      <WishlistForm onCreateWishlist={handleCreateWishlist} />
+      </div>
+
+      <div className="product-list">
+        {wishlists.map((wishlist) => (
+          <div key={wishlist.id} className="product-card">
+            <h3>{wishlist.name}</h3>
+            <p>{wishlist.description}</p>
+            <button onClick={() => handleDeleteWishlist(wishlist.id)}>
+              Delete Wishlist
+            </button>
+            </div>
+        ))}
+      </div>
+
+      <Link to="/all-products" className="view-all-products-button">
+        <button>View All Products</button>
+      </Link>
+
       <table>
         <thead>
           <tr>
@@ -50,10 +88,19 @@ const UserWishlist = () => {
         </thead>
         <tbody>
           {wishlists.map((wishlist) => (
-            <tr key={wishlist.id}>
+            <React.Fragment key={wishlist.id}>       
+            <tr>
               <td>{wishlist.name}</td>
+              {wishlist.items.length === 0 ? (
+                <td colSpan="3">No items in this wishlist</td>
+              ) : (
+              wishlist.items.map((item) => (
+                <React.Fragment key={item.id}>       
               {/* Replace the following placeholder with actual wishlist items */}
-              <td>Item 1</td>
+              <td>{item.name}</td>
+              </React.Fragment>
+               ))
+               )}
               <td>
                 <select
                   defaultValue="1"
@@ -79,9 +126,13 @@ const UserWishlist = () => {
                 >
                   ❤️
                 </button>
+                <button onClick={() => handleDeleteWishlist(wishlist.id)}>
+                  Delete Wishlist
+                </button>
               </td>
               <td>{/* Display Most Wanted items here */}</td>
             </tr>
+            </React.Fragment>
           ))}
         </tbody>
       </table>

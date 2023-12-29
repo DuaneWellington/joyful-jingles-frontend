@@ -4,6 +4,11 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import LoginButton from "../Auth/LoginButton";
 import UserDashboard from "../UserDashboard/UserDashboard";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import UserProfile from "../UserDashboard/UserProfile";
+import UserWishlist from "../UserWishlist/UserWishlist"
+import WishlistForm from "../UserDashboard/WishlistForm";
+import AllProductsPage from "../AllProductsPage/AllProductsPage";
 import "./App.css";
 
 const App = () => {
@@ -29,10 +34,12 @@ const App = () => {
             </div>
           }
         />
-        <Route
-        path="/dashboard"
-        element={<UserDashboard />}
-        />
+        <Route path="/dashboard" element={<UserDashboard />} />
+        <Route path="/cart" element={<ShoppingCart />} />
+        <Route path="/profile" element={<UserProfile />} />
+        <Route path="/wishlist" element={<UserWishlist />} />
+        <Route path="/create-wishlist" element={<WishlistForm />} />
+        <Route path="/all-products" element={<AllProductsPage />} />
       </Routes>
     </div>
   );

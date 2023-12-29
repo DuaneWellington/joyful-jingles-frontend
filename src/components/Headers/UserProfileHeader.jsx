@@ -21,9 +21,6 @@ const UserProfileHeader = () => {
           <li>
           <LogoutButton />
           </li>
-
-          
-
           {/* Add more nav links as needed */}
         </ul>
       </nav>
