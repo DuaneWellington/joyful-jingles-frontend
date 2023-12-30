@@ -15,20 +15,56 @@ const UserWishlist = () => {
   }, []);
 
   const handleDeleteItem = (wishlistId, itemId) => {
-    console.log(`Delete item ${itemId} from wishlist ${wishlistId}`);
+    setWishlists((prevWishlists) => {
+      const updatedWishlists = prevWishlists.map((wishlist) => {
+        if (wishlist.id === wishlistId) {
+          wishlist.items = wishlist.items.filter((item) => item.id !== itemId);
+        }
+        return wishlist;
+      });
+    localStorage.setItem("wishlists", JSON.stringify(updatedWishlists));
+    return updatedWishlists;
+    });
   };
 
   const handleChangeQuantity = (wishlistId, itemId, newQuantity) => {
-    console.log(
-      `Change quantity of item ${itemId} in wishlist ${wishlistId} to ${newQuantity}`
-    );
+    setWishlists((prevWishlists) => {
+      const updatedWishlists = prevWishlists.map((wishlist) => {
+        if (wishlist.id === wishlistId) {
+          wishlist.items = wishlist.items.map((item) => {
+            if (item.id === itemId) {
+              item.newQuantity = newQuantity;
+            }
+            return item;
+          })
+        }
+        return wishlist;
+      })
+      localStorage.setItem("wishlists", JSON.stringify(updatedWishlists));
+      return updatedWishlists;
+    })
   };
 
   const handleMostWantedClick = (wishlistId, itemId) => {
-    console.log(`Add item ${itemId} to Most Wanted in wishlist ${wishlistId}`);
-  };
+    setWishlists((prevWishlists) => {
+      const updatedWishlists = prevWishlists.map((wishlist) => {
+        if (wishlist.id === wishlistId) {
+          wishlist.items = wishlist.items.map((item) => {
+            if (item.id === itemId) {
+              item.mostWanted = !item.mostWanted;
+            }
+            return item;
+          });
+        }
+        return wishlist;
+      });
+        localStorage.setItem("wishlists", JSON.stringify(updatedWishlists));
+        return updatedWishlists;
+      })
+    }
 
   const handleCreateWishlist = (newWishlist) => {
+    console.log("Creating wishlist:", newWishlist)
     setWishlists((prevWishlists) => {
       const updatedWishlists = [...prevWishlists, newWishlist]
       localStorage.setItem("wishlists", JSON.stringify(updatedWishlists));
@@ -43,6 +79,33 @@ const UserWishlist = () => {
       return updatedWishlists;
     })
   }
+
+  const handleAddItem = async (productId) => {
+    try {
+    const productDetails = await fetchProductDetails(productId);
+    const selectedWishlist = await promptUserToChooseWishlist();
+    setWishlists((prevWishlists) => {
+      const updatedWishlists = prevWishlists.map((wishlist) => {
+        if (wishlist.id === selectedWishlist.id) {
+          wishlist.items.push(productDetails);
+        }
+        return wishlist;
+      });
+      localStorage.setItem("wishlists", JSON.stringify(updatedWishlists));
+      return updatedWishlists;
+    });
+  } catch (error) {
+    console.error("Error adding item to wishlist:", error);
+  }
+};
+ 
+const fetchProductDetails = async (productId) => {
+  return { id: productId, name: "Dummy Produc", price: 20.99, quantity: 1, mostWanted: false };
+};
+
+const promptUserToChooseWishlist = async () => {
+  return wishlists.length > 0 ? wishlists[0] : null;
+};
 
   return (
     <div className="wl-user-wishlist-container">
@@ -87,20 +150,21 @@ const UserWishlist = () => {
             <React.Fragment key={wishlist.id}>       
             <tr>
               <td>{wishlist.name}</td>
+              </tr>
               {wishlist.items.length === 0 ? (
+                <tr>
                 <td colSpan="3">No items in this wishlist</td>
+                </tr>
               ) : (
-              wishlist.items.map((item) => (
-                <React.Fragment key={item.id}>       
-              <td>{item.name}</td>
-              </React.Fragment>
-               ))
-               )}
+              wishlist.items.map((wishlistItem) => (
+                <React.Fragment key={wishlistItem.id}>
+                  <tr>
+              <td>{wishlistItem.name}</td>
               <td>
                 <select
-                  defaultValue="1"
+                  value={wishlistItem.quantity}
                   onChange={(e) =>
-                    handleChangeQuantity(wishlist.id, "item1", e.target.value)
+                    handleChangeQuantity(wishlist.id, wishlistItem.id, e.target.value)
                   }
                 >
                   {Array.from({ length: 20 }, (_, index) => (
@@ -108,23 +172,30 @@ const UserWishlist = () => {
                       {index + 1}
                     </option>
                   ))}
-                  {/* ... */}
                 </select>
               </td>
               <td>
-                <button onClick={() => handleDeleteItem(wishlist.id, "item1")}>
+                <button onClick={() => handleDeleteItem(wishlist.id, wishlistItem.id)}>
                   Delete
                 </button>
                 <button
-                  onClick={() => handleMostWantedClick(wishlist.id, "item1")}
+                  onClick={() => handleMostWantedClick(wishlist.id, wishlistItem.id)}
                 >
+                  {wishlistItem.mostWanted ? "Remove Most Wanted" : "Add Most Wanted"}
                   ❤️
                 </button>
-                <button onClick={() => handleDeleteWishlist(wishlist.id)}>
+                </td>
+                </tr>
+                <tr>
+                  <td colSpan="3">
+                  <button onClick={() => handleDeleteWishlist(wishlist.id)}>
                   Delete Wishlist
                 </button>
-              </td>
-            </tr>
+                  </td>
+                  </tr>
+                </React.Fragment>
+              ))
+              )}
             </React.Fragment>
           ))}
         </tbody>

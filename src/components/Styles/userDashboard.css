@@ -6,7 +6,7 @@
   }
   
   .ud-pageTitle {
-
+    
   }
 
   .ud-product-card {
@@ -82,20 +82,24 @@
     justify-content: space-between;
     align-items: center;
     color: whitesmoke;
-    background-color: darkgreen;
+    background-color: #074a07; 
     margin: 0px;
     padding: 10px;
   }
 
   .ud-headerNav {
-    background-color: darkgreen;
+    background-color: #074a07; 
     color: whitesmoke;
   }
 
   .ud-navList {
     color: whitesmoke;
+    background-color: #074a07; 
+
   }
 
   .ud-navItem {
 color: whitesmoke;
+background-color: #074a07; 
+
   }

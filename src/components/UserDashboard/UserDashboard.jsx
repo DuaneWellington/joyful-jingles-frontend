@@ -56,7 +56,7 @@ const UserDashboard = () => {
 
   const selectedProducts = getRandomProducts(3);
 
-  const addToCart = () => {
+  const addToCart = (item) => {
     const currentCart = localStorage.getItem("cart");
     const cartItems = currentCart ? JSON.parse(currentCart) : [];
     cartItems.push(item);
@@ -120,20 +120,20 @@ const UserDashboard = () => {
           </p>
           {searchResults.length > 0
           ? searchResults.map((item) => (
-            <ClickableProduct key={item.id} item={item} addToCart={addToCart} />
+            <ClickableProduct key={item.id} item={item} addToCart={() => addToCart(item)} />
             ))
             : selectedProducts.map((item) => (
               // <ClickableProduct key={item.id} item={item} />
             // ))}
-            <div key={item.id} className="product-card">
+            <div key={item.id} className="ud-product-card">
               {item.images && item.images.length >= 2 && (
                 <img
                   src={item.images[1]} // Display the second image if available
                   alt={item.title}
-                  className="product-image"
+                  className="ud-product-image"
                 />
               )}
-              <div className="product-info">
+              <div className="ud-product-info">
                 <h3>{item.title}</h3>
                 <p>${item.price}</p>
               </div>

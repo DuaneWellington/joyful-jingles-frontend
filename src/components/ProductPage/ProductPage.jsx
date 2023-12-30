@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ProductPageHeader from "../Headers/ProductPageHeader";
 import "../Styles/ProductPage.css";
+import "../App/App.css"
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -21,6 +22,16 @@ const ProductPage = () => {
   if (!productDetails) {
     return <div>Loading...</div>;
   }
+
+  const handleAddToWishlist = () => {
+    const currentWishlist = localStorage.getItem("wishlist");
+    const wishlistItems = currentWishlist ? JSON.parse(currentWishlist) : [];
+    setProductDetails((prevDetails) => {
+        wishlistItems.push(prevDetails);
+        localStorage.setItem("wishlist", JSON.stringify(wishlistItems));
+        return prevDetails;
+    });
+  };
 
   return (
     <div>

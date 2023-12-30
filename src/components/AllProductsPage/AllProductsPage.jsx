@@ -6,7 +6,6 @@ import "../Styles/AllProductsPage.css";
 
 const AllProductsPage = () => {
     const [productList, setProductList] = useState([]);
-//   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch("https://dummyjson.com/products")
@@ -23,6 +22,29 @@ const AllProductsPage = () => {
       });
   }, []);
 
+const handleAddItem = async (productId) => {
+    const productDetails = await fetchProductDetails(productId);
+    const selectedWishlist = await promptUserToChooseWishlist();
+    setWishlists((prevWishlists) => {
+        const updatedWishlists = prevWishlists.map((wishlist) => {
+            if (wishlist.id === selectedWishlist.id) {
+                wishlist.items.push(productDetails);
+            }
+            return wishlist;
+        })
+        localStorage.setItem("wishlists", JSON.stringify(updatedWishlists));
+        return updatedWishlists;
+    });
+};
+
+const fetchProductDetails = async (productId) => {
+    return { id: productId, name: "Dummy Product", price: 20.99, quatity: 1, mostWanted: false };
+};
+
+const promptUserToChooseWishlist = async () => {
+    return wishlists.length > 0 ? wishlists[0] : null;
+}
+
   return (
     <div>
       <h1>All Products</h1>
@@ -38,6 +60,8 @@ const AllProductsPage = () => {
               <h3>{product.title}</h3>
               <p>${product.price}</p>
             </Link>
+            <button onClick={() => handleAddItem(product.id)}>Add to Cart
+            </button>
           </div>
         ))}
       </div>
