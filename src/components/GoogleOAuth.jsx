@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/GoogleOAuth.jsx'
+// PATH: 'src/components/GoogleOAuth.jsx'
 
 // import React from "react"
 // import { useGoogleLogin } from "react-oauth";

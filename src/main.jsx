@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/main.jsx'
+// PATH: 'src/main.jsx'
 
 import ReactDOM from "react-dom/client";
 import App from "./components/App/App.jsx";

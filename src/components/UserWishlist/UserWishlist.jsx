@@ -10,25 +10,21 @@ const UserWishlist = () => {
   const [wishlists, setWishlists] = useState([]);
 
   useEffect(() => {
-    // pulls wishlists from localStorage when the component mounts
     const storedWishlists = JSON.parse(localStorage.getItem("wishlists")) || [];
     setWishlists(storedWishlists);
   }, []);
 
   const handleDeleteItem = (wishlistId, itemId) => {
-    // deletes the item from the wishlist
     console.log(`Delete item ${itemId} from wishlist ${wishlistId}`);
   };
 
   const handleChangeQuantity = (wishlistId, itemId, newQuantity) => {
-    // changes the quantity of the item in the wishlist
     console.log(
       `Change quantity of item ${itemId} in wishlist ${wishlistId} to ${newQuantity}`
     );
   };
 
   const handleMostWantedClick = (wishlistId, itemId) => {
-    // adds the item to the 'Most Wanted' column
     console.log(`Add item ${itemId} to Most Wanted in wishlist ${wishlistId}`);
   };
 
@@ -49,20 +45,20 @@ const UserWishlist = () => {
   }
 
   return (
-    <div className="user-wishlist-container">
+    <div className="wl-user-wishlist-container">
       <header>
         <UserWishlistHeader />
       </header>
 
       <h1>User Wishlist</h1>
 
-      <div className="wishlist-form-container">
+      <div className="wl-wishlist-form-container">
       <WishlistForm onCreateWishlist={handleCreateWishlist} />
       </div>
 
-      <div className="product-list">
+      <div className="wl-product-list">
         {wishlists.map((wishlist) => (
-          <div key={wishlist.id} className="product-card">
+          <div key={wishlist.id} className="wl-product-card">
             <h3>{wishlist.name}</h3>
             <p>{wishlist.description}</p>
             <button onClick={() => handleDeleteWishlist(wishlist.id)}>
@@ -72,7 +68,7 @@ const UserWishlist = () => {
         ))}
       </div>
 
-      <Link to="/all-products" className="view-all-products-button">
+      <Link to="/all-products" className="wl-view-all-products-button">
         <button>View All Products</button>
       </Link>
 
@@ -96,7 +92,6 @@ const UserWishlist = () => {
               ) : (
               wishlist.items.map((item) => (
                 <React.Fragment key={item.id}>       
-              {/* Replace the following placeholder with actual wishlist items */}
               <td>{item.name}</td>
               </React.Fragment>
                ))
@@ -108,7 +103,6 @@ const UserWishlist = () => {
                     handleChangeQuantity(wishlist.id, "item1", e.target.value)
                   }
                 >
-                  {/* You can dynamically generate quantity options based on available quantities */}
                   {Array.from({ length: 20 }, (_, index) => (
                     <option key={index + 1} value={index + 1}>
                       {index + 1}
@@ -130,7 +124,6 @@ const UserWishlist = () => {
                   Delete Wishlist
                 </button>
               </td>
-              <td>{/* Display Most Wanted items here */}</td>
             </tr>
             </React.Fragment>
           ))}

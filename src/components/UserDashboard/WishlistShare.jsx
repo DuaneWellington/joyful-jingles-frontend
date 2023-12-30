@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/WishlistShare.jsx'
+// PATH: 'src/components/UserDashboard/WishlistShare.jsx'
 
 
 import React from "react";

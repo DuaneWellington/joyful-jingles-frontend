@@ -26,14 +26,14 @@ const AllProductsPage = () => {
   return (
     <div>
       <h1>All Products</h1>
-      <div className="product-list">
+      <div className="app-product-list">
         {productList.map((product) => (
-          <div key={product.id} className="product-card">
+          <div key={product.id} className="app-product-card">
             <Link to={`/product/${product.id}`}>
               <img
                 src={product.images[1]}
                 alt={product.title}
-                className="product-image"
+                className="app-product-image"
               />
               <h3>{product.title}</h3>
               <p>${product.price}</p>

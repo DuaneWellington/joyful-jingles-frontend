@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/pages/Main/Main.jsx'
+// PATH: 'src/pages/Main/Main.jsx'
 
 
 function Main() {

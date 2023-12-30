@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/UserProfile.jsx'
+// PATH: 'src/components/UserDashboard/UserProfile.jsx'
 
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -17,11 +17,11 @@ const UserProfile = () => {
       <header>
         <UserProfileHeader />
       </header>
-    <div className="user-profile-container">
+    <div className="up-user-profile-container">
       {isAuthenticated && (
-        <div className="user-profile-card">
-          <img className="profile-image" src={user.picture} alt={user.name} />
-          <div className="profile-info">
+        <div className="up-user-profile-card">
+          <img className="up-profile-image" src={user.picture} alt={user.name} />
+          <div className="up-profile-info">
             <h2>{user.name}</h2>
             <p>{user.email}</p>
           </div>

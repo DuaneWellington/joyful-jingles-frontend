@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/Utilities/api.jsx'
+// PATH: 'src/Utilities/api.jsx'
 
 import axios from "axios";
 

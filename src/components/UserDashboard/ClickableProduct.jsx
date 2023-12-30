@@ -1,4 +1,4 @@
-
+// PATH: 'src/components/UserDashboard/ClickableProduct.jsx'
 
 import React from "react";
 

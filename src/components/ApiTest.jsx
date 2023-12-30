@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/ApiTest.jsx'
+// PATH: 'src/components/ApiTest.jsx'
 
 import React, { useState, useEffect } from 'react';
 import UserDashboardHeader from './Headers/UserDashboardHeader';

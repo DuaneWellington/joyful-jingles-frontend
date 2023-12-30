@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/WishlistItemForm.jsx'
+// PATH: 'src/components/UserDashboard/WishlistItemForm.jsx'
 
 
 import React, { useState } from "react";

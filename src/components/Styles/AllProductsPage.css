@@ -1,6 +1,6 @@
 /* PATH: 'src/components/Styles/AllProductsPage.css' */
 
-.user-wishlist-container {
+.app-user-wishlist-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -11,33 +11,33 @@ h1 {
     margin-bottom: 20px;
 }
 
-.wishlist-form-container {
+.app-wishlist-form-container {
     margin-bottom: 20px;
 }
 
-.product-list {
+.app-product-list {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
 }
 
-.product-card {
+.app-product-card {
     background-color: #074a07;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 4px black;
 }
 
-.product-card h3 {
+.app-product-card h3 {
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-.product-card p {
+.app-product-card p {
     color: #555;
 }
 
-.view-all-products-button {
+.app-view-all-products-button {
     background-color: #4caf50;
     color: #fff;
     padding: 10px 20px;
@@ -47,6 +47,6 @@ h1 {
     cursor: pointer;
 }
 
-.view-all-products-button:hover {
+.app-view-all-products-button:hover {
     background-color: #45a049;
 }

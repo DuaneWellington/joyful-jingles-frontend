@@ -95,27 +95,27 @@ const UserDashboard = () => {
       <header>
         <UserDashboardHeader />
       </header>
-      <div className="dashboard-header">
+      <div className="ud-dashboard-header">
         <img
           src={magnifyingGlassIconUrl}
           alt="Search"
-          className="search-icon"
+          className="ud-search-icon"
           onClick={toggleSearchBar}
         />
-        <div className="searchAndCart">
+        <div className="ud-searchAndCart">
         {searchVisible ? (<SearchBar onSearch={handleSearch}/>) : null}
 
         <ShoppingCartIcon cartCount={cartCount} />
         </div>
 
-        <h1 className="pageTitle">My Dashboard</h1>
+        <h1 className="ud-pageTitle">My Dashboard</h1>
         <p>
           Welcome,{" "}
-          <Link to="/profile" className="profile-link">
+          <Link to="/profile" className="ud-profile-link">
             {getFirstName()}
           </Link>
         </p>
-        <div className="product-container">
+        <div className="ud-product-container">
           <p>{searchResults.length > 0 ? 'Search Results' : 'Hot and Trending'}
           </p>
           {searchResults.length > 0
@@ -123,9 +123,9 @@ const UserDashboard = () => {
             <ClickableProduct key={item.id} item={item} addToCart={addToCart} />
             ))
             : selectedProducts.map((item) => (
-              <ClickableProduct key={item.id} item={item} />
-            ))}
-            {/* <div key={item.id} className="product-card">
+              // <ClickableProduct key={item.id} item={item} />
+            // ))}
+            <div key={item.id} className="product-card">
               {item.images && item.images.length >= 2 && (
                 <img
                   src={item.images[1]} // Display the second image if available
@@ -138,7 +138,7 @@ const UserDashboard = () => {
                 <p>${item.price}</p>
               </div>
             </div>
-          ))} */}
+          ))}
         </div>
       </div>
     </div>
@@ -153,7 +153,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="search-bar">
+    <div className="ud-search-bar">
       <input
         type="text"
         placeholder="Search..."
@@ -166,9 +166,9 @@ const SearchBar = ({ onSearch }) => {
 };
 
 const ShoppingCartIcon = ({ cartCount }) => (
-  <Link to="/cart" className="shopping-cart-icon">
+  <Link to="/cart" className="ud-shopping-cart-icon">
     <FontAwesomeIcon icon={faShoppingCart} />
-    {cartCount > 0 && <div className="cart-count"> {cartCount}</div>}
+    {cartCount > 0 && <div className="ud-cart-count"> {cartCount}</div>}
   </Link>
 );
 

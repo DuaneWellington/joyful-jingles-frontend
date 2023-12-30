@@ -25,11 +25,11 @@ const ProductPage = () => {
   return (
     <div>
       <ProductPageHeader />
-      <div className="product-card">
+      <div className="pp-product-card">
         <img
           src={productDetails.images[1]}
           alt={productDetails.title}
-          className="product-image"
+          className="pp-product-image"
         />
         <h1>{productDetails.title}</h1>
         <p>{productDetails.description}</p>

@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/UserDashboard/FriendWishlists.jsx'
+// PATH: 'src/components/UserDashboard/FriendWishlists.jsx'
 
 
 import React, { useEffect, useState } from "react";
