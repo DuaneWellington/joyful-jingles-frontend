@@ -4,6 +4,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import LoginButton from "../Auth/LoginButton";
 import UserDashboard from "../UserDashboard/UserDashboard";
+import VideoBackground from "../VideoBackground";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import UserProfile from "../UserDashboard/UserProfile";
 import UserWishlist from "../UserWishlist/UserWishlist"
@@ -16,6 +17,7 @@ const App = () => {
 
   return (
     <div className="app-container">
+      <VideoBackground />
       <Routes>
         <Route
           path="/"

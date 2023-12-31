@@ -2,7 +2,7 @@
 
 import React from "react";
 
-const ClickableProduct = ({ item }) => {
+const ClickableProduct = ({ item, addToCart }) => {
     const handleClick = () => {
         addToCart(item);
     };
@@ -16,14 +16,14 @@ const ClickableProduct = ({ item }) => {
     }
 
     return (
-        <div className="product-card" onClick={handleClick}>
+        <div className="ud-product-card" onClick={handleClick}>
             {item.images && item.images.length >= 2 && (
                 <img src={item.images[1]}
                 alt={item.title}
-                className="product-image"
+                className="ud-product-image"
                 />
             )}
-            <div className="product-info">
+            <div className="ud-product-info">
                 <h3>{item.title}</h3>
                 <p>${item.price}</p>
                 <button onClick={handleAddToCart}>Add to Cart</button>

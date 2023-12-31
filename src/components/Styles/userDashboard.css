@@ -1,5 +1,9 @@
  /* PATH: 'src/components/styles/UserDashboard.css' */
 
+.ud-hot-trending {
+  font-size: larger;
+}
+
  .ud-product-container {
     display: flex;
     flex-wrap: wrap;

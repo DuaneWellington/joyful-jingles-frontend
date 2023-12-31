@@ -1,6 +1,8 @@
-// PATH: 'src/componenets/ShoppingCart/ShoppingCart.jsx'
+// PATH: 'src/components/ShoppingCart/ShoppingCart.jsx'
 
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import ShoppingCartHeader from "../Headers/ShoppingCartHeader";
 
 const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -18,22 +20,56 @@ const ShoppingCart = () => {
     fetchCartItems();
   }, []);
 
-  const cartItemsWithIds = cartItems.map((item, index) => ({
-    ...item,
-    id: item.id || index,
-  }));
+  // const cartItemsWithIds = cartItems.map((item, index) => ({
+  //   ...item,
+  //   id: item.id || index,
+  // }));
 
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
   };
 
-  const handleAddToWishlist = () => {
-    const currentWishlist = localStorage.getItem("wishlist");
-    const wishlistItems = currentWishlist ? JSON.parse(currentWishlist) : [];
-    wishlistItems.push(...cartItems);
-    localStorage.setItem("wishlist", JSON.stringify(wishlistItems));
-    setCartItems([]);
-  };
+const promptUserToChooseWishlist = async (availabaleWishlists) => {
+
+  if (availabaleWishlists.length === 1) {
+    return availabaleWishlists[0];
+  }
+
+  const wishlistNames = availabaleWishlists.map((wishlist) => wishlist.name);
+  const selectedWishlistName = prompt("Choose a wishlist:", wishlistNames.join(", "));
+
+  return availabaleWishlists.find((wishlist) => wishlist.name === selectedWishlistName) || null;
+};
+
+  const handleAddToWishlist = async () => {
+    const existingWishlists = JSON.parse(localStorage.getItem("wishlists")) || [];
+
+    if (existingWishlists.length === 0) {
+      alert("Please create a Wishlist to add your cart item(s) to!");
+    } else {
+      const selectedWishlist = await promptUserToChooseWishlist(existingWishlists);
+
+      if (selectedWishlist) {
+        const updatedWishlist = {
+          ...selectedWishlist,
+          items: [...selectedWishlist.items, ...cartItems],
+        };
+
+        const updatedWishlists = existingWishlists.map(wl =>
+          wl.id === selectedWishlist.id ? updatedWishlist : wl
+          );
+
+          localStorage.setItem("wishlists", JSON.stringify(updatedWishlists));
+          setCartItems([]);
+        }
+      }
+    }
+  //   const currentWishlist = localStorage.getItem("wishlist");
+  //   const wishlistItems = currentWishlist ? JSON.parse(currentWishlist) : [];
+  //   wishlistItems.push(...cartItems);
+  //   localStorage.setItem("wishlist", JSON.stringify(wishlistItems));
+  //   setCartItems([]);
+  // };
 
   const handleClearCart = () => {
     localStorage.removeItem("cart");
@@ -48,11 +84,15 @@ const ShoppingCart = () => {
 
   return (
     <div>
+    <header>
+        <ShoppingCartHeader />
+        </header>
+        <div>
       <h1>Shopping Cart</h1>
-      {cartItemsWithIds.length > 0 ? (
+      {cartItems.length > 0 ? (
         <div className="product-container">
-          {cartItemsWithIds.map((item) => (
-            <div key={item.id} className="product-card">
+          {cartItems.map((item, index) => (
+            <div key={index} className="product-card">
               <div className="product-info">
                 <h3>{item.name}</h3>
                 <p>${item.price}</p>
@@ -66,13 +106,14 @@ const ShoppingCart = () => {
       ) : (
         <p>Shopping cart is empty</p>
       )}
-      {cartItemsWithIds.length > 0 && (
+      {cartItems.length > 0 && (
         <div>
           <p>Total Price: ${calculateTotalPrice()}</p>
           <button onClick={handleAddToWishlist}>Add to Wishlist</button>
           <button onClick={handleClearCart}>Empty Cart</button>
         </div>
       )}
+    </div>
     </div>
   );
 };

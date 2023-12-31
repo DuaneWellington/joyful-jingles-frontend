@@ -13,7 +13,7 @@ const magnifyingGlassIconUrl = "https://i.imgur.com/2Prbjp1.png";
 
 const UserDashboard = () => {
   const { user, logout } = useAuth();
-  const [data, setData] = useState({products: []});
+  const [data, setData] = useState({ products: [] });
   const [searchResults, setSearchResults] = useState([]);
   const [searchVisible, setSearchVisible] = useState(false);
   const [cartCount, setCartCount] = useState(0);
@@ -61,7 +61,7 @@ const UserDashboard = () => {
     const cartItems = currentCart ? JSON.parse(currentCart) : [];
     cartItems.push(item);
     localStorage.setItem("cart", JSON.stringify(cartItems));
-    setCartCount((prevCount) => prevCount +1);
+    setCartCount((prevCount) => prevCount + 1);
   };
 
   const getFirstName = () => {
@@ -80,13 +80,15 @@ const UserDashboard = () => {
 
   const handleSearch = async (keyword) => {
     try {
-      const response = await fetch(`https://dummyjson.com/products/search?q=${keyword}`);
+      const response = await fetch(
+        `https://dummyjson.com/products/search?q=${keyword}`
+      );
       const searchData = await response.json();
       setData(searchData);
       setSearchResults(searchData.products || []);
-      console.log("Search Results:", searchData)
+      console.log("Search Results:", searchData);
     } catch (error) {
-      console.error('Error searching for products:', error);
+      console.error("Error searching for products:", error);
     }
   };
 
@@ -103,9 +105,9 @@ const UserDashboard = () => {
           onClick={toggleSearchBar}
         />
         <div className="ud-searchAndCart">
-        {searchVisible ? (<SearchBar onSearch={handleSearch}/>) : null}
+          {searchVisible ? <SearchBar onSearch={handleSearch} /> : null}
 
-        <ShoppingCartIcon cartCount={cartCount} />
+          <ShoppingCartIcon cartCount={cartCount} />
         </div>
 
         <h1 className="ud-pageTitle">My Dashboard</h1>
@@ -115,30 +117,26 @@ const UserDashboard = () => {
             {getFirstName()}
           </Link>
         </p>
+        <div className="ud-hot-trending">
+          <p>Hot and Trending</p>
+        </div>
         <div className="ud-product-container">
-          <p>{searchResults.length > 0 ? 'Search Results' : 'Hot and Trending'}
-          </p>
           {searchResults.length > 0
-          ? searchResults.map((item) => (
-            <ClickableProduct key={item.id} item={item} addToCart={() => addToCart(item)} />
-            ))
-            : selectedProducts.map((item) => (
-              // <ClickableProduct key={item.id} item={item} />
-            // ))}
-            <div key={item.id} className="ud-product-card">
-              {item.images && item.images.length >= 2 && (
-                <img
-                  src={item.images[1]} // Display the second image if available
-                  alt={item.title}
-                  className="ud-product-image"
+            ? searchResults.map((item) => (
+                <ClickableProduct
+                  key={item.id}
+                  item={item}
+                  addToCart={() => addToCart(item)}
                 />
-              )}
-              <div className="ud-product-info">
-                <h3>{item.title}</h3>
-                <p>${item.price}</p>
-              </div>
-            </div>
-          ))}
+              ))
+            : selectedProducts.map((item) => (
+                <React.Fragment key={item.id}>
+                  <ClickableProduct
+                    item={item}
+                    addToCart={() => addToCart(item)}
+                  />
+                </React.Fragment>
+              ))}
         </div>
       </div>
     </div>

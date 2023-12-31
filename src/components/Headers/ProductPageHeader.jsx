@@ -6,18 +6,23 @@ import LogoutButton from "../Auth/LogoutButton";
 import "../App/App.css"
 
 const ProductPageHeader = () => {
+    const linkStyle = {
+        color: "whitesmoke",
+        textDecoration: "none",
+      };
+    
   return (
     <header>
       <nav className="headerNav">
         <ul>
           <li>
-            <Link to="/wishlist">Wishlist</Link>
+            <Link to="/wishlist" style={linkStyle}>Wishlist</Link>
             </li>
             <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/dashboard" style={linkStyle}>Dashboard</Link>
           </li>
           <li>
-            <Link to="/profile">Profile</Link>
+            <Link to="/profile" style={linkStyle}>Profile</Link>
           </li>
           <li>
           <LogoutButton />
