@@ -4,15 +4,15 @@ console.log('App.jsx loaded')
 
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import LoginButton from "../Auth/LoginButton.jsx";
-import UserDashboard from "../UserDashboard/UserDashboard.jsx";
-import VideoBackground from "../VideoBackground.jsx";
-import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
-import UserProfile from "../UserDashboard/UserProfile.jsx";
-import UserWishlist from "../UserWishlist/UserWishlist.jsx"
-import WishlistForm from "../UserDashboard/WishlistForm.jsx";
-import AllProductsPage from "../AllProductsPage/AllProductsPage.jsx";
-import ProductPage from "../ProductPage/ProductPage.jsx";
+import LoginButton from "../Auth/LoginButton";
+import UserDashboard from "../UserDashboard/UserDashboard";
+import VideoBackground from "../VideoBackground";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import UserProfile from "../UserDashboard/UserProfile";
+import UserWishlist from "../UserWishlist/UserWishlist"
+import WishlistForm from "../UserDashboard/WishlistForm";
+import AllProductsPage from "../AllProductsPage/AllProductsPage";
+import ProductPage from "../ProductPage/ProductPage";
 import "./App.css";
 
 const App = () => {
