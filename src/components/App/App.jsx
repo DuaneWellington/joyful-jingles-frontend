@@ -18,11 +18,10 @@ import "./App.css";
 const App = () => {
 console.log('within App constant declaration')
   return (
+    console.log('inside return for App function'),
     <div className="app-container">
-      console.log('RETURN inside div app container')
       <VideoBackground />
       <Routes>
-        console.log('in Routes...')
         <Route
           path="/"
           element={
