@@ -40,6 +40,8 @@ console.log('within App constant declaration')
             </div>
           }
         />
+            {console.log('successfully completed App function')}
+
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/profile" element={<UserProfile />} />
