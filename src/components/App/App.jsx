@@ -16,9 +16,10 @@ import ProductPage from "../ProductPage/ProductPage";
 import "./App.css";
 
 const App = () => {
-
+console.log('within App constant declaration')
   return (
     <div className="app-container">
+      console.log('RETURN inside div app container')
       <VideoBackground />
       <Routes>
         console.log('in Routes...')
