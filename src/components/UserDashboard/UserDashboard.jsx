@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../Auth/Auth0ProviderWithNavigate";
 import { Link } from "react-router-dom";
 import "../Styles/UserDashboard.css";
-import UserDashboardHeader from "../Headers/UserDashboardHeader";
+// import UserDashboardHeader from "../Headers/UserDashboardHeader";
+import ShoppingCartHeader from "../Headers/ShoppingCartHeader";
 import ClickableProduct from "./ClickableProduct";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
@@ -95,7 +96,7 @@ const UserDashboard = () => {
   return (
     <div>
       <header>
-        <UserDashboardHeader />
+        <ShoppingCartHeader />
       </header>
       <div className="ud-dashboard-header">
         <img

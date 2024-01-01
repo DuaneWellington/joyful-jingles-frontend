@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import WishlistForm from "../UserDashboard/WishlistForm";
-import UserWishlistHeader from "../Headers/UserWishlistHeader";
+import ShoppingCartHeader from "../Headers/ShoppingCartHeader";
 import "../Styles/UserWishlist.css";
 
 const UserWishlist = () => {
@@ -33,7 +33,7 @@ const UserWishlist = () => {
         if (wishlist.id === wishlistId) {
           wishlist.items = wishlist.items.map((item) => {
             if (item.id === itemId) {
-              item.newQuantity = newQuantity;
+              item.quantity = newQuantity;
             }
             return item;
           });
@@ -116,7 +116,7 @@ const UserWishlist = () => {
         if (matchingProduct) {
           return {
             id: matchingProduct.id,
-            name: matchingProduct.name,
+            name: matchingProduct.title,
             price: matchingProduct.price,
             quantity: matchingProduct.quantity || 1,
             mostWanted: matchingProduct.mostWanted || false,
@@ -153,7 +153,10 @@ const UserWishlist = () => {
   return (
     <div className="wl-user-wishlist-container">
       <header>
-        <UserWishlistHeader />
+        <ShoppingCartHeader />
+        <Link to="/all-products" className="wl-view-all-products-button">
+        <button>View All Products</button>
+      </Link>
       </header>
 
       <h1>User Wishlist</h1>
@@ -167,7 +170,7 @@ const UserWishlist = () => {
           <div key={`wishlist-${wishlist.id}`} className="wl-product-card">  
             <h3>{wishlist.name}</h3>
             <p>{wishlist.description}</p>
-            <button onClick={() => handleDeleteWishlist(wishlist.id)}>
+            <button className="wl-delete-button" onClick={() => handleDeleteWishlist(wishlist.id)}>
               Delete Wishlist
             </button>
             {wishlist.items.length === 0 ? (
@@ -180,7 +183,8 @@ const UserWishlist = () => {
                     className="wl-wishlist-item"
                   >
                     <img src={wishlistItem.image} alt={wishlistItem.name} />
-                    <p>{wishlistItem.name}</p>
+                    <p>{wishlistItem.title}</p>
+                    <p>{wishlistItem.price}</p>
                     <select
                       value={wishlistItem.quantity}
                       onChange={(e) =>
@@ -224,9 +228,6 @@ const UserWishlist = () => {
           </div>
         ))}
       </div>
-      <Link to="/all-products" className="wl-view-all-products-button">
-        <button>View All Products</button>
-      </Link>
     </div>
   );
 };

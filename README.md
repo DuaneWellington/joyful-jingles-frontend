@@ -4,6 +4,8 @@ App Title: Contains a description of what the app does and optional background i
 
 User Flow(s): A screenshot of your app’s landing page and the core features in your app.
 
+![Alt text](<Screenshot 2024-01-01 at 4.40.10 AM.png>)
+
 Note: If your user needs take any specific steps to navigate, interact, or activate your application’s services, include that information in this section.
 
 Technologies Used: List of the technologies used.

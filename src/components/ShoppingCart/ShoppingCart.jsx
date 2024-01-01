@@ -4,8 +4,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ShoppingCartHeader from "../Headers/ShoppingCartHeader";
 
+
 const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([]);
+
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -19,6 +21,21 @@ const ShoppingCart = () => {
     };
     fetchCartItems();
   }, []);
+
+
+  // const handleSearch = async (keyword) => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://dummyjson.com/products/search?q=${keyword}`
+  //     );
+  //     const searchData = await response.json();
+  //     setData(searchData);
+  //     setSearchResults(searchData.products || []);
+  //     console.log("Search Results:", searchData);
+  //   } catch (error) {
+  //     console.error("Error searching for products:", error);
+  //   }
+  // };
 
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
@@ -83,7 +100,7 @@ const promptUserToChooseWishlist = async (availableWishlists) => {
           {cartItems.map((item, index) => (
             <div key={index} className="product-card">
               <div className="product-info">
-                <h3>{item.name}</h3>
+                <h3>{item.title}</h3>
                 <p>${item.price}</p>
                 <button onClick={() => handleRemoveItem(item.id)}>
                     Remove

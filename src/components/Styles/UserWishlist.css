@@ -22,6 +22,7 @@ h1 {
 }
 
 .wl-product-card {
+    color:whitesmoke;
     background-color: #074a07;
     padding: 15px;
     border-radius: 8px;
@@ -34,13 +35,15 @@ h1 {
 }
 
 .wl-product-card p {
-    color: #555;
+    color: whitesmoke;
+}
+
+.wl-delete-button {
+    color: whitesmoke;
+    background-color: red;
 }
 
 .wl-view-all-products-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
     background-color: #4caf50;
     color: #fff;
     padding: 10px 20px;

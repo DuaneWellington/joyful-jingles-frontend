@@ -1,7 +1,5 @@
 // PATH: 'src/components/App/App.jsx'
 
-console.log('App.jsx loaded')
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import LoginButton from "../Auth/LoginButton";
@@ -10,15 +8,14 @@ import VideoBackground from "../VideoBackground";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import UserProfile from "../UserDashboard/UserProfile";
 import UserWishlist from "../UserWishlist/UserWishlist"
+import { WishlistProvider } from "../WishlistContext/WishlistContext";
 import WishlistForm from "../UserDashboard/WishlistForm";
 import AllProductsPage from "../AllProductsPage/AllProductsPage";
 import ProductPage from "../ProductPage/ProductPage";
 import "./App.css";
 
 const App = () => {
-console.log('within App constant declaration')
   return (
-    console.log('inside return for App function'),
     <div className="app-container">
       <VideoBackground />
       <Routes>
@@ -40,13 +37,11 @@ console.log('within App constant declaration')
             </div>
           }
         />
-            {console.log('successfully completed App function')}
-
         <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/profile" element={<UserProfile />} />
-        <Route path="/wishlist" element={<UserWishlist />} />
-        <Route path="/create-wishlist" element={<WishlistForm />} />
+        <Route path="/wishlist" element={<WishlistProvider><UserWishlist /></WishlistProvider>} />
+        <Route path="/create-wishlist" element={<WishlistProvider><WishlistForm /></WishlistProvider>} />
         <Route path="/all-products" element={<AllProductsPage />} />
         <Route path="/product/:productId" element={<ProductPage />} />
       </Routes>
@@ -55,5 +50,3 @@ console.log('within App constant declaration')
 };
 
 export default App;
-
-console.log('End of App.jsx')
