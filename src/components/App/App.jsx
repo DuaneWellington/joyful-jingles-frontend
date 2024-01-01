@@ -6,7 +6,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import LoginButton from "../Auth/LoginButton.jsx";
 import UserDashboard from "../UserDashboard/UserDashboard.jsx";
-import VideoBackground from "../VideoBackground";
+import VideoBackground from "../VideoBackground.jsx";
 import ShoppingCart from "../ShoppingCart/ShoppingCart.jsx";
 import UserProfile from "../UserDashboard/UserProfile.jsx";
 import UserWishlist from "../UserWishlist/UserWishlist.jsx"
