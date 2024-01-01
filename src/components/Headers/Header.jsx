@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/Header/Header.jsx'
+// PATH: 'src/components/Header/Header.jsx'
 
 import React from "react";
 import { Link } from "react-router-dom";

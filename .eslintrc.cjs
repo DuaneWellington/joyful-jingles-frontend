@@ -1,4 +1,4 @@
-// // PATH: 'JOYFUL-JINGLES/express-react/frontend/.eslintrc.cjs'
+// // PATH: '.eslintrc.cjs'
 
 module.exports = {
   root: true,

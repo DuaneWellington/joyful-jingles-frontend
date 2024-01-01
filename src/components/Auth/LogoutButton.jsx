@@ -1,4 +1,4 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/Auth/LogoutButton.jsx'
+// PATH: 'src/components/Auth/LogoutButton.jsx'
 
 import { useAuth0 } from "@auth0/auth0-react";
 import "../Styles/LogoutButton.css"

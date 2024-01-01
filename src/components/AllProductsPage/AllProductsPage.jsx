@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../Styles/AllProductsPage.css";
+import ProductPageHeader from "../Headers/ProductPageHeader";
 
 const AllProductsPage = () => {
     const [productList, setProductList] = useState([]);
@@ -47,6 +48,9 @@ const promptUserToChooseWishlist = async () => {
 
   return (
     <div>
+        <header>
+            <ProductPageHeader />
+        </header>
       <h1>All Products</h1>
       <div className="app-product-list">
         {productList.map((product) => (

@@ -1,10 +1,10 @@
-// PATH: 'JOYFUL-JINGLES/express-react/frontend/src/components/Headers/UserProfileHeader.jsx'
+// PATH: 'src/components/Headers/UserProfileHeader.jsx'
 
 import React from "react";
 import { Link } from "react-router-dom";
 import UserProfile from "../UserDashboard/UserProfile";
 import LogoutButton from "../Auth/LogoutButton";
-import ApiTest from "../ApiTest";
+// import ApiTest from "../ApiTest";
 import "../App/App.css"
 
 const UserProfileHeader = () => {

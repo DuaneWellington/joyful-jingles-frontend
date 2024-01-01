@@ -20,25 +20,20 @@ const ShoppingCart = () => {
     fetchCartItems();
   }, []);
 
-  // const cartItemsWithIds = cartItems.map((item, index) => ({
-  //   ...item,
-  //   id: item.id || index,
-  // }));
-
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
   };
 
-const promptUserToChooseWishlist = async (availabaleWishlists) => {
+const promptUserToChooseWishlist = async (availableWishlists) => {
 
-  if (availabaleWishlists.length === 1) {
-    return availabaleWishlists[0];
+  if (availableWishlists.length === 1) {
+    return availableWishlists[0];
   }
 
-  const wishlistNames = availabaleWishlists.map((wishlist) => wishlist.name);
+  const wishlistNames = availableWishlists.map((wishlist) => wishlist.name);
   const selectedWishlistName = prompt("Choose a wishlist:", wishlistNames.join(", "));
 
-  return availabaleWishlists.find((wishlist) => wishlist.name === selectedWishlistName) || null;
+  return availableWishlists.find((wishlist) => wishlist.name === selectedWishlistName) || null;
 };
 
   const handleAddToWishlist = async () => {
@@ -64,12 +59,6 @@ const promptUserToChooseWishlist = async (availabaleWishlists) => {
         }
       }
     }
-  //   const currentWishlist = localStorage.getItem("wishlist");
-  //   const wishlistItems = currentWishlist ? JSON.parse(currentWishlist) : [];
-  //   wishlistItems.push(...cartItems);
-  //   localStorage.setItem("wishlist", JSON.stringify(wishlistItems));
-  //   setCartItems([]);
-  // };
 
   const handleClearCart = () => {
     localStorage.removeItem("cart");
