@@ -21,6 +21,7 @@ const App = () => {
     <div className="app-container">
       <VideoBackground />
       <Routes>
+        console.log('in Routes...')
         <Route
           path="/"
           element={
@@ -52,3 +53,5 @@ const App = () => {
 };
 
 export default App;
+
+console.log('End of App.jsx')
