@@ -5,10 +5,23 @@ import { Link } from "react-router-dom";
 import "../Styles/AllProductsPage.css";
 import ShoppingCartHeader from "../Headers/ShoppingCartHeader";
 import { useWishlist } from "../WishlistContext/WishlistContext";
+import ClickableProduct from "../UserDashboard/ClickableProduct";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const AllProductsPage = () => {
     const [productList, setProductList] = useState([]);
     const { wishlists, setWishlists } = useWishlist();
+    const [cartCount, setCartCount] = useState(0);
+    const [searchResults, setSearchResults] = useState([]);
+    const [searchVisible, setSearchVisible] = useState(false);
+
+// useEffect(() => {
+//     const currentCart = localStorage.getItem("cart");
+//     const cartData = currentCart ? JSON.parse(currentCart) : [];
+//     setCartItems(cartData);
+//     setCartCount(cartData.length);
+// }, []);
 
   useEffect(() => {
     fetch("https://dummyjson.com/products")
@@ -25,9 +38,26 @@ const AllProductsPage = () => {
       });
   }, []);
 
+  const addToCart = async (item) => {
+
+    const currentCart = localStorage.getItem("cart");
+    const cartItems = currentCart ? JSON.parse(currentCart) : [];
+    const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
+
+    if (!isItemInCart) {
+      const updatedCartItems = [...cartItems, item];
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+    setCartCount((prevCount) => prevCount + 1);
+  } else {
+    console.log("Item already in cart.");
+  }
+};
+
+
 const handleAddItem = async (productId) => {
     const productDetails = await fetchProductDetails(productId);
     const selectedWishlist = await promptUserToChooseWishlist();
+
     if (selectedWishlist) {
     setWishlists((prevWishlists) => {
         const updatedWishlists = prevWishlists.map((wishlist) => {
@@ -39,6 +69,8 @@ const handleAddItem = async (productId) => {
         localStorage.setItem("wishlists", JSON.stringify(updatedWishlists));
         return updatedWishlists;
     });
+    localStorage.removeItem("cart");
+    setCartCount(0);
 }
 };
 
@@ -64,11 +96,52 @@ const promptUserToChooseWishlist = async () => {
     return wishlists && wishlists.length > 0 ? wishlists[0] : null;
 }
 
+const toggleSearchBar = () => {
+    searchVisible(!searchVisible);
+};
+
+const handleSearch = async (keyword) => {
+    try {
+        const response = await fetch(
+            `https://dummyjson.com/products/search?q=${keyword}`
+        );
+        const searchData = await response.json();
+        setSearchResults(searchData.products || []);
+        console.log("Search Results:", searchData);
+    } catch (error) {
+        console.error("Error searching for products:", error);
+    }
+};
+
+const selectedProducts = getRandomProducts(3);
+
+function getRandomProducts(count) {
+    const dataProducts = productList || [];
+    const numProducts = dataProducts.length;
+
+    if (numProducts === 0) {
+        return [];
+    }
+
+    const randomIndices = [];
+    while (randomIndices.length < count) {
+        const randomIndex = Math.floor(Math.random() * numProducts);
+        if (!randomIndices.includes(randomIndex)) {
+            randomIndices.push(randomIndex);
+        }
+    }
+    return randomIndices.map((index) => dataProducts[index]);
+}
+
   return (
     <div>
         <header>
-            <ShoppingCartHeader />
+            <ShoppingCartHeader cartCount={cartCount} />
         </header>
+        <div className="ud-searchAndCart">
+          <ShoppingCartIcon cartCount={cartCount} />
+        </div>
+
       <h1>All Products</h1>
       <div className="app-product-list">
         {productList.map((product) => (
@@ -87,8 +160,35 @@ const promptUserToChooseWishlist = async () => {
           </div>
         ))}
       </div>
+
+      <div className="ud-product-container">
+          {searchResults.length > 0
+            ? searchResults.map((item) => (
+                <ClickableProduct
+                  key={item.id}
+                  item={item}
+                  addToCart={() => addToCart(item)}
+                />
+              ))
+            : selectedProducts.map((item) => (
+                <React.Fragment key={item.id}>
+                  <ClickableProduct
+                    item={item}
+                    addToCart={() => addToCart(item)}
+                  />
+                </React.Fragment>
+              ))}
+        </div>
     </div>
   );
 };
+
+const ShoppingCartIcon = ({ cartCount }) => (
+    <Link to="/cart" className="ud-shopping-cart-icon">
+      <FontAwesomeIcon icon={faShoppingCart} />
+      {cartCount > 0 && <div className="ud-cart-count"> {cartCount}</div>}
+    </Link>
+  );
+  
 
 export default AllProductsPage;
