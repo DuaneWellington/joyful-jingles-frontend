@@ -54,12 +54,21 @@ const promptUserToChooseWishlist = async (availableWishlists) => {
 };
 
   const handleAddToWishlist = async () => {
-    const existingWishlists = JSON.parse(localStorage.getItem("wishlists")) || [];
+    let existingWishlists;
+
+    try {
+      existingWishlists = JSON.parse(localStorage.getItem("wishlists")) || [];
+    } catch (error) {
+      console.error("Error parsing wishlists from localStorage:", error);
+      existingWishlists = [];
+    }
 
     if (existingWishlists.length === 0) {
       alert("Please create a Wishlist to add your cart item(s) to!");
     } else {
       const selectedWishlist = await promptUserToChooseWishlist(existingWishlists);
+      console.log('Existing Wishlists:', existingWishlists);
+
 
       if (selectedWishlist) {
         const updatedWishlist = {
@@ -75,7 +84,7 @@ const promptUserToChooseWishlist = async (availableWishlists) => {
           setCartItems([]);
         }
       }
-    }
+    };
 
   const handleClearCart = () => {
     localStorage.removeItem("cart");

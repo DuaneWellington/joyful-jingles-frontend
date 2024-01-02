@@ -84,6 +84,8 @@ const UserWishlist = () => {
   const handleAddItemToWishlist = async (productId) => {
     try {
       const productDetails = await fetchProductDetails(productId);
+      console.log("PRODUCT ID:", productId);
+
       const selectedWishlist = await promptUserToChooseWishlist(wishlists);
 
       if (selectedWishlist) {
@@ -105,6 +107,11 @@ const UserWishlist = () => {
   const fetchProductDetails = async (productId) => {
     try {
       const wishlists = JSON.parse(localStorage.getItem("wishlists")) || [];
+      console.log("WISHLISTS:", wishlists)
+      if (!wishlists) {
+        throw new Error("No wishlists found in localStorage.");
+      }
+
       const matchingWishlist = wishlists.find((wishlist) =>
         wishlist.items.some((item) => item.id === productId)
       );
@@ -179,8 +186,8 @@ const UserWishlist = () => {
               <div>
                 {wishlist.items.map((wishlistItem) => (
                   <div
-                    key={`wishlistItem-${wishlist.id}-${wishlistItem.id}`}
-                    className="wl-wishlist-item"
+                  key={`wishlistItem-${wishlist.id}-${wishlistItem.id}-${wishlistItem.title}`}
+                  className="wl-wishlist-item"
                   >
                     <img src={wishlistItem.image} alt={wishlistItem.name} />
                     <p>{wishlistItem.title}</p>

@@ -17,6 +17,7 @@ const UserDashboard = () => {
   const [data, setData] = useState({ products: [] });
   const [searchResults, setSearchResults] = useState([]);
   const [searchVisible, setSearchVisible] = useState(false);
+  const [cartItems, setCartItems] = useState(new Set());
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
@@ -60,10 +61,16 @@ const UserDashboard = () => {
   const addToCart = (item) => {
     const currentCart = localStorage.getItem("cart");
     const cartItems = currentCart ? JSON.parse(currentCart) : [];
-    cartItems.push(item);
-    localStorage.setItem("cart", JSON.stringify(cartItems));
+    const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
+
+    if (!isItemInCart) {
+      const updatedCartItems = [...cartItems, item];
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
     setCartCount((prevCount) => prevCount + 1);
-  };
+  } else {
+    console.log("Item already in cart.");
+  }
+};
 
   const getFirstName = () => {
     if (user && user.given_name) {

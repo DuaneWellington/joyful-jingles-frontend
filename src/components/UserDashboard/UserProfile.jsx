@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import UserProfileHeader from "../Headers/UserProfileHeader";
+import ShoppingCartHeader from "../Headers/ShoppingCartHeader";
 import "../Styles/UserProfile.css"
 
 const UserProfile = () => {
@@ -15,7 +15,7 @@ const UserProfile = () => {
   return (
     <div>
       <header>
-        <UserProfileHeader />
+        <ShoppingCartHeader />
       </header>
     <div className="up-user-profile-container">
       {isAuthenticated && (
